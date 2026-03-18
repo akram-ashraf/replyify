@@ -1,0 +1,53 @@
+{
+  "name": "replyify",
+  "version": "0.1.0",
+  "description": "Lightweight Node.js API response formatter for consistent success, error, validation, and pagination replies.",
+  "keywords": [
+    "api",
+    "api responses",
+    "response formatter",
+    "express",
+    "nodejs",
+    "typescript",
+    "pagination",
+    "error handling",
+    "rest api",
+    "backend"
+  ],
+  "author": "Akram",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./express": {
+      "types": "./dist/express.d.ts",
+      "import": "./dist/express.js",
+      "require": "./dist/express.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/express.ts --format esm,cjs --dts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm run test && npm run build"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.8.2",
+    "vitest": "^3.1.1"
+  }
+}

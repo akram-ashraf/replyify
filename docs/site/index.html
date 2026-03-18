@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>replyify Documentation | Node.js API Response Formatter for Express and TypeScript</title>
+    <meta
+      name="description"
+      content="replyify is a lightweight Node.js API response formatter for Express and TypeScript. Standardize success replies, API errors, validation errors, and pagination responses."
+    />
+    <meta
+      name="keywords"
+      content="replyify, Node.js API response formatter, Express response handler, TypeScript API responses, API error handling, pagination helper, validation error formatter, REST API utilities"
+    />
+    <meta name="author" content="Akram" />
+    <meta name="robots" content="index, follow" />
+    <meta
+      property="og:title"
+      content="replyify Documentation | Consistent API Responses for Node.js"
+    />
+    <meta
+      property="og:description"
+      content="Learn how replyify standardizes success, error, validation, and pagination responses for Node.js and Express applications."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="replyify Documentation | Node.js API Response Formatter"
+    />
+    <meta
+      name="twitter:description"
+      content="Consistent API responses for Express and Node.js with built-in helpers for success, errors, validation, and pagination."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top">replyify</a>
+        <nav class="main-nav">
+          <a href="#problem">Problem</a>
+          <a href="#solution">Solution</a>
+          <a href="#usage">Usage</a>
+          <a href="#api">API</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">Standard API responses for Node.js</p>
+            <h1>Make every API reply predictable.</h1>
+            <p class="hero-copy">
+              replyify gives your backend one clean response format for success,
+              errors, validation, and pagination so frontend code and SDKs stop
+              guessing.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#install">Install</a>
+              <a class="button secondary" href="#before-after">See Before / After</a>
+            </div>
+          </div>
+          <div class="hero-card code-panel">
+            <div class="panel-top">
+              <span>Quick look</span>
+              <button class="copy-button" data-copy-target="hero-snippet">Copy</button>
+            </div>
+            <pre><code id="hero-snippet">import { ok, apiError, paginate } from "replyify"
+
+return ok(user)
+throw apiError("NOT_FOUND", "User not found")
+return paginate(users, { page: 1, limit: 10, total: 42 })</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="problem" class="section">
+        <div class="container section-grid">
+          <div>
+            <p class="section-label">Problem</p>
+            <h2>Backend responses drift fast.</h2>
+            <p>
+              Teams start simple, then every route returns a slightly different
+              JSON shape. Errors become inconsistent, pagination changes per
+              endpoint, and frontend consumers need special-case logic.
+            </p>
+          </div>
+          <div class="code-panel">
+            <div class="panel-top">
+              <span>What developers keep writing</span>
+              <button class="copy-button" data-copy-target="problem-snippet">Copy</button>
+            </div>
+            <pre><code id="problem-snippet">res.json(data)
+
+res.status(400).json({ error })
+
+throw new Error()</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="solution" class="section section-alt">
+        <div class="container section-grid">
+          <div>
+            <p class="section-label">Solution</p>
+            <h2>One response contract for every route.</h2>
+            <p>
+              replyify centralizes reply building, error normalization, status
+              mapping, and Express integration while keeping the core framework
+              agnostic.
+            </p>
+          </div>
+          <div class="code-panel">
+            <div class="panel-top">
+              <span>What replyify encourages</span>
+              <button class="copy-button" data-copy-target="solution-snippet">Copy</button>
+            </div>
+            <pre><code id="solution-snippet">return ok(user)
+
+throw apiError("NOT_FOUND", "User not found")
+
+return paginate(users, { page, limit, total })</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="before-after" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-label">Before / After</p>
+            <h2>See the difference in one route.</h2>
+          </div>
+          <div class="tabs" data-tabs>
+            <div class="tab-list" role="tablist" aria-label="Before and after examples">
+              <button class="tab-button is-active" data-tab="before">Before</button>
+              <button class="tab-button" data-tab="after">After</button>
+            </div>
+            <div class="tab-panel is-active" data-panel="before">
+              <div class="code-panel">
+                <div class="panel-top">
+                  <span>Before</span>
+                  <button class="copy-button" data-copy-target="before-snippet">Copy</button>
+                </div>
+                <pre><code id="before-snippet">app.get("/users", async (req,res)=>{
+  res.json(users)
+})</code></pre>
+              </div>
+            </div>
+            <div class="tab-panel" data-panel="after">
+              <div class="code-panel">
+                <div class="panel-top">
+                  <span>After</span>
+                  <button class="copy-button" data-copy-target="after-snippet">Copy</button>
+                </div>
+                <pre><code id="after-snippet">app.get(
+  "/users",
+  replyHandler(async ()=>{
+    return ok(users)
+  })
+)</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="install" class="section section-alt">
+        <div class="container two-column">
+          <div>
+            <p class="section-label">Install</p>
+            <h2>Add replyify to your project.</h2>
+            <p>
+              Install the package, then import the helpers you need from the root
+              entry point or the Express subpath.
+            </p>
+          </div>
+          <div class="code-panel">
+            <div class="panel-top">
+              <span>npm</span>
+              <button class="copy-button" data-copy-target="install-snippet">Copy</button>
+            </div>
+            <pre><code id="install-snippet">npm install replyify</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="usage" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-label">Usage</p>
+            <h2>Start with the helpers that match your route.</h2>
+          </div>
+          <div class="cards">
+            <article class="info-card">
+              <h3>Success replies</h3>
+              <p>Wrap route results with <code>ok()</code> so every successful payload follows the same shape.</p>
+            </article>
+            <article class="info-card">
+              <h3>Error replies</h3>
+              <p>Use <code>fail()</code> for non-throwing errors and <code>apiError()</code> when you want to throw.</p>
+            </article>
+            <article class="info-card">
+              <h3>Pagination</h3>
+              <p>Use <code>paginate()</code> to attach page, limit, total, and pages in one consistent meta block.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-label">Examples</p>
+            <h2>Use replyify in real handlers.</h2>
+          </div>
+          <div class="example-stack">
+            <article class="code-panel expandable" data-expandable>
+              <div class="panel-top">
+                <span>Express example</span>
+                <div class="panel-actions">
+                  <button class="copy-button" data-copy-target="express-snippet">Copy</button>
+                  <button class="toggle-button" data-toggle>Expand</button>
+                </div>
+              </div>
+              <div class="expand-body">
+                <pre><code id="express-snippet">import express from "express"
+import { ok } from "replyify"
+import { replyHandler, errorMiddleware } from "replyify/express"
+
+const app = express()
+
+app.get(
+  "/users/:id",
+  replyHandler(async (req) => {
+    const user = { id: req.params.id, name: "Asha" }
+    return ok(user)
+  })
+)
+
+app.use(errorMiddleware())</code></pre>
+              </div>
+            </article>
+
+            <article class="code-panel expandable" data-expandable>
+              <div class="panel-top">
+                <span>Pagination example</span>
+                <div class="panel-actions">
+                  <button class="copy-button" data-copy-target="pagination-snippet">Copy</button>
+                  <button class="toggle-button" data-toggle>Expand</button>
+                </div>
+              </div>
+              <div class="expand-body">
+                <pre><code id="pagination-snippet">import { paginate } from "replyify"
+
+return paginate(users, {
+  page: 1,
+  limit: 10,
+  total: 42,
+  meta: { requestId: "req_123" }
+})</code></pre>
+              </div>
+            </article>
+
+            <article class="code-panel expandable" data-expandable>
+              <div class="panel-top">
+                <span>Error example</span>
+                <div class="panel-actions">
+                  <button class="copy-button" data-copy-target="error-snippet">Copy</button>
+                  <button class="toggle-button" data-toggle>Expand</button>
+                </div>
+              </div>
+              <div class="expand-body">
+                <pre><code id="error-snippet">import { apiError, validationError } from "replyify"
+
+if (!req.body.name) {
+  return validationError([
+    { field: "name", message: "Required" }
+  ])
+}
+
+if (!user) {
+  throw apiError("NOT_FOUND", "User not found")
+}</code></pre>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="api" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-label">API</p>
+            <h2>Public API surface</h2>
+          </div>
+          <div class="api-grid">
+            <article class="api-item"><h3>ok(data, message?, meta?)</h3><p>Build a success reply result.</p></article>
+            <article class="api-item"><h3>fail(code, message, errors?, meta?)</h3><p>Build an error reply result without throwing.</p></article>
+            <article class="api-item"><h3>paginate(data, options)</h3><p>Build a paginated reply result with pagination metadata.</p></article>
+            <article class="api-item"><h3>apiError(code, message, errors?, meta?)</h3><p>Create an <code>ApiError</code> instance.</p></article>
+            <article class="api-item"><h3>validationError(errors, message?)</h3><p>Create a validation error reply result.</p></article>
+            <article class="api-item"><h3>ApiError</h3><p>Error class with <code>code</code>, <code>status</code>, <code>errors</code>, and <code>meta</code>.</p></article>
+            <article class="api-item"><h3>replyHandler(fn)</h3><p>Express wrapper that formats returned reply results automatically.</p></article>
+            <article class="api-item"><h3>errorMiddleware()</h3><p>Express middleware for normalizing and formatting thrown errors.</p></article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>replyify documentation site</p>
+        <a href="#top">Back to top</a>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
