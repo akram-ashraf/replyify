@@ -74,7 +74,7 @@
               <span>Quick look</span>
               <button class="copy-button" data-copy-target="hero-snippet">Copy</button>
             </div>
-            <pre><code id="hero-snippet">import { ok, apiError, paginate } from "replyify"
+            <pre><code id="hero-snippet">import { ok, apiError, paginate } from "@ironstack/replyify"
 
 return ok(user)
 throw apiError("NOT_FOUND", "User not found")
@@ -188,7 +188,7 @@ return paginate(users, { page, limit, total })</code></pre>
               <span>npm</span>
               <button class="copy-button" data-copy-target="install-snippet">Copy</button>
             </div>
-            <pre><code id="install-snippet">npm install replyify</code></pre>
+            <pre><code id="install-snippet">npm install @ironstack/replyify</code></pre>
           </div>
         </div>
       </section>
@@ -233,8 +233,8 @@ return paginate(users, { page, limit, total })</code></pre>
               </div>
               <div class="expand-body">
                 <pre><code id="express-snippet">import express from "express"
-import { ok } from "replyify"
-import { replyHandler, errorMiddleware } from "replyify/express"
+import { ok } from "@ironstack/replyify"
+import { replyHandler, errorMiddleware } from "@ironstack/replyify/express"
 
 const app = express()
 
@@ -259,7 +259,7 @@ app.use(errorMiddleware())</code></pre>
                 </div>
               </div>
               <div class="expand-body">
-                <pre><code id="pagination-snippet">import { paginate } from "replyify"
+                <pre><code id="pagination-snippet">import { paginate } from "@ironstack/replyify"
 
 return paginate(users, {
   page: 1,
@@ -279,7 +279,7 @@ return paginate(users, {
                 </div>
               </div>
               <div class="expand-body">
-                <pre><code id="error-snippet">import { apiError, validationError } from "replyify"
+                <pre><code id="error-snippet">import { apiError, validationError } from "@ironstack/replyify"
 
 if (!req.body.name) {
   return validationError([

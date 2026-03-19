@@ -1,3 +1,4 @@
 MD_files/
 node_modules/
 dist/
+.npmrc

@@ -1,5 +1,5 @@
 {
-  "name": "replyify",
+  "name": "@ironstack/replyify",
   "version": "0.1.0",
   "description": "Lightweight Node.js API response formatter for consistent success, error, validation, and pagination replies.",
   "keywords": [
@@ -16,6 +16,7 @@
   ],
   "author": "Akram",
   "license": "MIT",
+  "homepage": "https://akram-ashraf.github.io/replyify/",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

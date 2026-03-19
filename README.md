@@ -1,6 +1,8 @@
-# replyify
+# @ironstack/replyify
 
 Lightweight Node.js API response formatting for consistent success, error, validation, and pagination replies.
+
+Docs: https://akram-ashraf.github.io/replyify/
 
 ## Why replyify
 
@@ -36,7 +38,7 @@ return paginate(users, { page, limit, total })
 ## Install
 
 ```bash
-npm install replyify
+npm install @ironstack/replyify
 ```
 
 ## Response shape
@@ -87,7 +89,7 @@ Pagination:
 ### Basic replies
 
 ```ts
-import { fail, ok, paginate, validationError, apiError } from "replyify"
+import { fail, ok, paginate, validationError, apiError } from "@ironstack/replyify"
 
 return ok({ id: 1, name: "Asha" })
 
@@ -110,8 +112,8 @@ throw apiError("NOT_FOUND", "User not found")
 
 ```ts
 import express from "express"
-import { ok, apiError } from "replyify"
-import { replyHandler, errorMiddleware } from "replyify/express"
+import { ok, apiError } from "@ironstack/replyify"
+import { replyHandler, errorMiddleware } from "@ironstack/replyify/express"
 
 const app = express()
 
